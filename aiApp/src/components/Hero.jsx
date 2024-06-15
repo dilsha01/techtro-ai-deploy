@@ -28,14 +28,13 @@ const Hero = () => {
           AI Solutions
         </h1>
         <p className={`${styles.paragraph} max-w-[700px] mt-5`}>
-          Our team of experts uses a methodology to identify the credit cards
-          most likely to fit your needs. We examine annual percentage rates,
-          annual fees.
+        TechTro AI solutions empower creativity, clarity, and financial insight, 
+        providing tailored assistance, image generation, and financial management.
         </p>
       </div>
 
       <div className={`flex-1 flex ${styles.flexCenter} md:my-0 my-10 relative`}>
-       
+      
 
         {/* gradient start */}
         <div className="absolute z-[0] w-[40%] h-[35%] top-0 pink__gradient" />

@@ -31,6 +31,19 @@ export const ButtonLinks = [
   },
 ]
 
+export const projectLinks = [
+  {
+    id: "helper",
+  },
+  {
+    id: "aimage-generator",
+  },
+  {
+    id: "financial-assistant",
+    
+  },
+]
+
 export const features = [
   {
     id: "project-1",
@@ -86,18 +99,18 @@ export const feedback = [
 export const stats = [
   {
     id: "stats-1",
-    title: "User Active",
-    value: "3800+",
+    title: "Current Users ",
+    value: "1M+",
   },
   {
     id: "stats-2",
-    title: "Trusted by Company",
-    value: "230+",
+    title: "Accuracy",
+    value: "100%",
   },
   {
     id: "stats-3",
-    title: "Transaction",
-    value: "$230M+",
+    title: "Countries",
+    value: "150+",
   },
 ];
 
