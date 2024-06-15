@@ -21,16 +21,13 @@ export const navLinks = [
     id: "sign-in",
     title: "Sign in",
   },
-  {
-    id: "sign-up",
-    title: "sign-up",
-  },
+ 
 ];
 
 export const ButtonLinks = [
   {
     id: "sign-up",
-    title: "sign-up",
+    title: "Sign Up Now",
   },
 ]
 

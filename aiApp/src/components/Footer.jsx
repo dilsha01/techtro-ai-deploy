@@ -4,15 +4,17 @@ import { footerLinks, socialMedia } from "../constants";
 
 const Footer = () => (
   <section className={`${styles.flexCenter} ${styles.paddingY} flex-col`}>
+    {/* Separation Line at the Beginning */}
+    <hr className="border-t-[1px] border-[#3F3E45] w-full mb-8" />
+
     <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>
       <div className="flex-[1] flex flex-col justify-start mr-10">
-      <div>
-      <p className="mt-2 font-poppins font-semibold text-3xl text-white flex items-center">
-  <img src={robot} alt="logo" className="w-[32px] h-[32px] mr-2" />
-  TechTro AI Solutions
-</p>
-
-  </div>
+        <div>
+          <p className="mt-2 font-poppins font-semibold text-3xl text-white flex items-center">
+            <img src={robot} alt="logo" className="w-[32px] h-[32px] mr-2" />
+            TechTro AI Solutions
+          </p>
+        </div>
         <p className={`${styles.paragraph} mt-4 max-w-[312px] flex items-center`}>
           A new way to make the payments easy, reliable and secure.
         </p>
@@ -41,7 +43,8 @@ const Footer = () => (
       </div>
     </div>
 
-    <div className="w-full flex justify-between items-center md:flex-row flex-col pt-6 border-t-[1px] border-t-[#3F3E45]">
+    {/* Copyright Information without Separation Line */}
+    <div className="w-full flex justify-between items-center md:flex-row flex-col pt-6">
       <p className="font-poppins font-normal text-center text-[18px] leading-[27px] text-white">
         Copyright Ⓒ 2024 TechTro AI Solutions. All Rights Reserved.
       </p>
