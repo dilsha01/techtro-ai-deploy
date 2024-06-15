@@ -16,8 +16,8 @@ const Footer = () => (
           </p>
         </div>
         <p className={`${styles.paragraph} mt-4 max-w-[312px] flex items-center`}>
-          A new way to make the payments easy, reliable and secure.
-        </p>
+          Address : 284,Moratuwa,Sri Lanka. <br/> Contact no : +94 76 152 698
+       </p>
       </div>
 
       <div className="flex-[1.5] w-full flex flex-row justify-between flex-wrap md:mt-0 mt-10">

@@ -14,7 +14,7 @@ export const navLinks = [
     title: "Products",
   },
   {
-   id : "contactus",
+   id : "contact-us",
     title: "Contact Us",
   },
   {
@@ -221,3 +221,5 @@ export const clients = [
     logo: dropbox,
   },
 ];
+
+
