@@ -6,42 +6,47 @@ export const navLinks = [
     title: "Home",
   },
   {
-    id: "features",
-    title: "Features",
+ 
+    title: "About",
   },
   {
-    id: "product",
-    title: "Product",
+  
+    title: "Products",
   },
   {
-    id: "clients",
-    title: "Clients",
+   
+    title: "Contact Us",
+  },
+  {
+   
+    title: "Sign in",
   },
 ];
 
 export const features = [
   {
-    id: "feature-1",
+    id: "project-1",
     icon: star,
-    title: "Rewards",
+    title: "AI Helper",
     content:
-      "The best credit cards offer some tantalizing combinations of promotions and prizes",
+      "The best helper to respond to user queries in a clear, concise, and accurate manner, ensuring the information provided is relevant, up-to-date, and helpful.",
   },
   {
-    id: "feature-2",
-    icon: shield,
-    title: "100% Secured",
+    id: "project-2",
+    icon: star,
+    title: "AI Image Generator",
     content:
-      "We take proactive steps make sure your information and transactions are secure.",
+      "Generate high-quality images from text prompts using state-of-the-art AI models, enabling creativity and innovation in digital content creation.",
   },
   {
-    id: "feature-3",
-    icon: send,
-    title: "Balance Transfer",
+    id: "project-3",
+    icon: star,
+    title: "Financial Assistant",
     content:
-      "A balance transfer credit card can save you a lot of money in interest charges.",
+      "An intelligent assistant that helps you manage your finances, track expenses, and provide insights for better financial decision-making.",
   },
 ];
+
 
 export const feedback = [
   {
