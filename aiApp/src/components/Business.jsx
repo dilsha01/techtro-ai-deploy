@@ -20,16 +20,13 @@ const FeatureCard = ({ icon, title, content, index }) => (
 
 const Business = () =>  (
   <section id="features" className={layout.section}>
-    <div className={layout.sectionInfo}>
-      <h2 className={styles.heading2}>
-        You do the business, <br className="sm:block hidden" /> we’ll handle
-        the money.
-      </h2>
-      <p className={`${styles.paragraph} max-w-[470px] mt-5`}>
-        With the right credit card, you can improve your financial life by
-        building credit, earning rewards and saving money. But with hundreds
-        of credit cards on the market.
+        <div className={layout.sectionInfo}>
+      <h2 className={styles.heading2}>You innovate with AI, <br className="sm:block hidden" /> we’ll enhance your capabilities.</h2> 
+      <p className={`${styles.paragraph} max-w-[600px] mt-5`}>
+        With our AI solutions, you can streamline your operations, enhance decision-making, and unlock new opportunities for growth. Whether you need an AI helper, an image generator, or a financial assistant, we have the tools to take your business to the next level.
       </p>
+
+
 
       <Button styles={`mt-10`} />
     </div>
