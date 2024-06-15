@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { close, menu } from "../assets";
+import { close, menu ,robot} from "../assets";
 import { navLinks } from "../constants";
 
 const Navbar = () => {
@@ -9,8 +9,11 @@ const Navbar = () => {
   return (
     <nav className="w-full flex items-center justify-between navbar mt-2"> {/* Removed py-3 and py-6, adjusted flex properties */}
       <div>
-        <p className="mt-2 font-poppins font-semibold text-3xl text-white">TechTro AI Solutions</p>
-      </div>
+    <p className="mt-2 font-poppins font-semibold text-3xl text-white flex items-center">
+      <img src={robot} alt="logo" className="w-[32px] h-[32px] mr-2" />
+      TechTro AI Solutions
+    </p>
+  </div>
 
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {navLinks.map((nav, index) => (
@@ -21,7 +24,7 @@ const Navbar = () => {
             } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
             onClick={() => setActive(nav.title)}
           >
-            <a href={`#${nav.id}`}>{nav.title}</a>
+            <a href={`${nav.id}`}>{nav.title}</a>
           </li>
         ))}
       </ul>
@@ -48,7 +51,7 @@ const Navbar = () => {
                 } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                 onClick={() => setActive(nav.title)}
               >
-                <a href={`#${nav.id}`}>{nav.title}</a>
+                <a href={`${nav.id}`}>{nav.title}</a>
               </li>
             ))}
           </ul>

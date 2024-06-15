@@ -1,5 +1,5 @@
 import styles from "../style";
-import { logo } from "../assets";
+import { robot } from "../assets";
 import { footerLinks, socialMedia } from "../constants";
 
 const Footer = () => (
@@ -7,9 +7,13 @@ const Footer = () => (
     <div className={`${styles.flexStart} md:flex-row flex-col mb-8 w-full`}>
       <div className="flex-[1] flex flex-col justify-start mr-10">
       <div>
-        <p className="mt-2 font-poppins font-semibold text-3xl text-white">TechTro AI Solutions</p>
-      </div>
-        <p className={`${styles.paragraph} mt-4 max-w-[312px]`}>
+      <p className="mt-2 font-poppins font-semibold text-3xl text-white flex items-center">
+  <img src={robot} alt="logo" className="w-[32px] h-[32px] mr-2" />
+  TechTro AI Solutions
+</p>
+
+  </div>
+        <p className={`${styles.paragraph} mt-4 max-w-[312px] flex items-center`}>
           A new way to make the payments easy, reliable and secure.
         </p>
       </div>

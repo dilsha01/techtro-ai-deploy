@@ -6,22 +6,33 @@ export const navLinks = [
     title: "Home",
   },
   {
- 
+    id:"about",
     title: "About",
   },
   {
-  
+    id : "products",
     title: "Products",
   },
   {
-   
+   id : "contactus",
     title: "Contact Us",
   },
   {
-   
+    id: "sign-in",
     title: "Sign in",
   },
+  {
+    id: "sign-up",
+    title: "sign-up",
+  },
 ];
+
+export const ButtonLinks = [
+  {
+    id: "sign-up",
+    title: "sign-up",
+  },
+]
 
 export const features = [
   {
