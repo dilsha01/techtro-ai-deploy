@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouter from "./routes/user.route.js";
 import authRouter from "./routes/auth.route.js";
+import { getChatCompletion } from "./gpt.js";
+import cors from "cors";
 dotenv.config();
 
 mongoose
@@ -16,6 +18,20 @@ mongoose
 
 const app = express();
 app.use(express.json());
+
+
+app.use(cors());
+
+app.post("/", async (request, response) => {
+  const { chats } = request.body;
+
+  try {
+    const output = await getChatCompletion(chats);
+    response.json({ output });
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+});
 
 app.listen(3000,()=>{
     console.log("Server is running on port 3000");
