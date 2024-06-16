@@ -11,6 +11,7 @@ import Hero from "./Hero";
 import Coming from "./Coming";
 import About from "./About";
 import Contacts from "./Contacts";
+import SignUp from "./SignUp";
 
 export {
   Navbar,
@@ -26,4 +27,5 @@ export {
   Coming,
   About,
   Contacts,
+  SignUp
 };

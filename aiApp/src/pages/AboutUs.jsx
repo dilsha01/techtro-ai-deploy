@@ -1,5 +1,5 @@
 import styles from "../style";
-import {  Footer, Navbar, About } from "../components";
+import {  Footer, Navbar, About  } from "../components";
 const AboutUs = () => (
     <div className="bg-primary w-full overflow-hidden">
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
@@ -14,7 +14,7 @@ const AboutUs = () => (
         <div className={`${styles.boxWidth}`}>
           
           <About/>
-          
+         
           <Footer />
         </div>
       </div>
