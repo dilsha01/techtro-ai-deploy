@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from "../style";
 import { robot } from "../assets";
-import { footerLinks, socialMedia } from "../constants";
+import { footerLinks, socialMedia ,contactDetails } from "../constants";
 
 const Footer = () => {
   const [active, setActive] = useState('');
@@ -19,9 +19,14 @@ const Footer = () => {
               TechTro AI Solutions
             </p>
           </div>
-          <p className={`${styles.paragraph} mt-4 max-w-[312px] flex items-center`}>
-            Address : 284, Moratuwa, Sri Lanka. <br /> Contact no : +94 76 152 698
-          </p>
+      
+          <ul className="mt-4 max-w-[312px]">
+          {contactDetails.map((detail, index) => (
+            <li key={index} className={`${styles.paragraph} text-white`}>
+              {detail}
+            </li>
+          ))}
+        </ul>
         </div>
 
         <div className="flex-[1.5] w-full flex flex-row justify-between flex-wrap md:mt-0 mt-10">

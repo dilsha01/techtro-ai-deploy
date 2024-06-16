@@ -1,29 +1,23 @@
-import styles from "./style";
-import { Billing, Business, CardDeal, Clients, CTA, Footer, Navbar, Stats, Testimonials, Hero } from "./components";
+import {BrowserRouter,Route,Routes} from "react-router-dom";
+import Home from "./pages/home";
+import Products from "./pages/products";
+import ComingSoon from "./pages/ComingSoon";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
 
-const App = () => (
-  <div className="bg-primary w-full overflow-hidden">
-    <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Navbar />
-      </div>
-    </div>
-
-    <div className={`bg-primary ${styles.flexStart}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Hero />
-      </div>
-    </div>
-    
-    <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Stats />
-        <Business />
-        
-        <Footer />
-      </div>
-    </div>
-  </div>
-);
-
-export default App;
+export default function App(){
+  return <BrowserRouter>
+  <Routes>
+    <Route path = "/" element ={<Home />}/>
+    <Route path = "/home" element ={<Home />}/>
+    <Route path = "/products" element ={<Products />}/>
+    <Route path = "/about" element ={<AboutUs />}/>
+    <Route path = "/contact-us" element ={<ContactUs />}/>
+    <Route path = "/sign-in" element ={<ComingSoon />}/>
+    <Route path = "/sign-up" element ={<ComingSoon />}/>
+    <Route path = "/helper" element ={<ComingSoon />}/>
+    <Route path = "/aimage-generator" element ={<ComingSoon />}/>
+    <Route path = "/financial-assistant" element ={<ComingSoon />}/>
+  </Routes>
+  </BrowserRouter>
+}

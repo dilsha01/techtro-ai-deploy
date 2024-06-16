@@ -223,3 +223,8 @@ export const clients = [
 ];
 
 
+export const contactDetails = [
+  "Address : 284, Moratuwa, Sri Lanka.",
+  "Tel : +947 156 567 89",
+  "E-mail : info@techtroai.com",
+];
