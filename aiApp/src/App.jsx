@@ -5,6 +5,7 @@ import ComingSoon from "./pages/ComingSoon";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 export default function App(){
   return <BrowserRouter>
@@ -14,7 +15,7 @@ export default function App(){
     <Route path = "/products" element ={<Products />}/>
     <Route path = "/about" element ={<AboutUs />}/>
     <Route path = "/contact-us" element ={<ContactUs />}/>
-    <Route path = "/sign-in" element ={<ComingSoon />}/>
+    <Route path = "/sign-in" element ={<Signin />}/>
     <Route path = "/sign-up" element ={<Signup />}/>
     
     <Route path = "/helper" element ={<ComingSoon />}/>
