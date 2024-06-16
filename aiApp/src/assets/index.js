@@ -25,6 +25,7 @@ import people02 from "./people02.png";
 import people03 from "./people03.png";
 import aii from "./aii.png";
 import robotArm from "./robotArm.png";
+import techtro from "./techtro.svg";
 
 export {
   airbnb,
@@ -54,4 +55,5 @@ export {
   people03,
   aii,
   robotArm,
+  techtro,
 };

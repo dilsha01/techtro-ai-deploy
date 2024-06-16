@@ -15,9 +15,24 @@ export default function App(){
     <Route path = "/contact-us" element ={<ContactUs />}/>
     <Route path = "/sign-in" element ={<ComingSoon />}/>
     <Route path = "/sign-up" element ={<ComingSoon />}/>
+    
     <Route path = "/helper" element ={<ComingSoon />}/>
     <Route path = "/aimage-generator" element ={<ComingSoon />}/>
     <Route path = "/financial-assistant" element ={<ComingSoon />}/>
+    
+    <Route path = "/content" element ={<ComingSoon />}/>
+    <Route path = "/create" element ={<ComingSoon />}/>
+    <Route path = "/explore" element ={<ComingSoon />}/>
+    <Route path = "/terms-and-services" element ={<ComingSoon />}/>
+    <Route path = "/help-center" element ={<ComingSoon />}/>
+    <Route path = "/partners" element ={<ComingSoon />}/>
+    <Route path = "/suggestions" element ={<ComingSoon />}/>
+    <Route path = "/blog" element ={<ComingSoon />}/>
+    <Route path = "/full-time" element ={<ComingSoon />}/>
+    <Route path = "/part-time" element ={<ComingSoon />}/>
+    
+    
+
   </Routes>
   </BrowserRouter>
 }

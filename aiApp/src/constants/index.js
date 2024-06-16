@@ -1,5 +1,6 @@
 import { people01, people02, people03, facebook, instagram, linkedin, twitter, airbnb, binance, coinbase, dropbox, send, shield, star  } from "../assets";
 
+
 export const navLinks = [
   {
     id: "home",
@@ -24,12 +25,6 @@ export const navLinks = [
  
 ];
 
-export const ButtonLinks = [
-  {
-    id: "sign-up",
-    title: "Sign Up Now",
-  },
-]
 
 export const projectLinks = [
   {
@@ -122,10 +117,7 @@ export const footerLinks = [
         name: "Content",
         link: "content",
       },
-      {
-        name: "How it Works",
-        link: "how-it-works",
-      },
+     
       {
         name: "Create",
         link: "create",
@@ -137,6 +129,7 @@ export const footerLinks = [
       {
         name: "Terms & Services",
         link: "terms-and-services",
+
       },
     ],
   },
@@ -159,22 +152,19 @@ export const footerLinks = [
         name: "Blog",
         link: "blog",
       },
-      {
-        name: "Newsletters",
-        link: "newsletters",
-      },
+     
     ],
   },
   {
-    title: "Partner",
+    title: "Join Us",
     links: [
       {
-        name: "Our Partner",
-        link: "our-partner",
+        name: "Full Time ",
+        link: "full-time",
       },
       {
-        name: "Become a Partner",
-        link: "become-a-partner",
+        name: "Part time",
+        link: "part-time",
       },
     ],
   },
