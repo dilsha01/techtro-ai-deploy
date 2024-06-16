@@ -17,6 +17,14 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.username || !formData.email || !formData.password) {
+        setLoading(true);
+        setError('All fields are required');
+        setLoading(false);
+        return;
+      }
+
     try {
       setLoading(true);
       const res = await fetch("/api/auth/sign-up", {

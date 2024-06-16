@@ -6,6 +6,7 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
+import AIhelper from "./pages/AIhelper";
 
 export default function App(){
   return <BrowserRouter>
@@ -18,7 +19,7 @@ export default function App(){
     <Route path = "/sign-in" element ={<Signin />}/>
     <Route path = "/sign-up" element ={<Signup />}/>
     
-    <Route path = "/helper" element ={<ComingSoon />}/>
+    <Route path = "/helper" element ={<AIhelper />}/>
     <Route path = "/aimage-generator" element ={<ComingSoon />}/>
     <Route path = "/financial-assistant" element ={<ComingSoon />}/>
     

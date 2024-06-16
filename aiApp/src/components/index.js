@@ -13,6 +13,7 @@ import About from "./About";
 import Contacts from "./Contacts";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import Gpt from "./GPT";
 
 export {
   Navbar,
@@ -29,5 +30,6 @@ export {
   About,
   Contacts,
   SignUp,
-  SignIn
+  SignIn,
+  Gpt
 };

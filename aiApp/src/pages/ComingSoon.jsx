@@ -1,5 +1,5 @@
 import styles from "../style";
-import { Billing, Business, CardDeal, Clients, CTA, Footer, Navbar, Stats, Testimonials, Hero ,Coming } from "../components";
+import {  Footer, Navbar ,Coming } from "../components";
 const ComingSoon = () => (
     <div className="bg-primary w-full overflow-hidden">
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>
@@ -12,9 +12,7 @@ const ComingSoon = () => (
       
       <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth}`}>
-          
-          <Coming/>
-          
+          <Coming />
           <Footer />
         </div>
       </div>
