@@ -14,6 +14,9 @@ import Contacts from "./Contacts";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import Gpt from "./GPT";
+import Reset from "./Reset";
+import ResetLayer from "./ResetLayer";
+import Activate from "./Activate";
 
 export {
   Navbar,
@@ -31,5 +34,8 @@ export {
   Contacts,
   SignUp,
   SignIn,
-  Gpt
+  Gpt,
+  Reset,
+  ResetLayer,
+  Activate,
 };

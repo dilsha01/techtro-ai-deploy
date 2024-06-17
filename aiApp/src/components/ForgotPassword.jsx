@@ -2,19 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from '../style';
 import { FcGoogle } from "react-icons/fc";
-import { MdVisibilityOff, MdVisibility } from 'react-icons/md';
 
-const SignIn = () => {
+const FogotPassword = () => {
     const [formData, setFormData] = useState({});
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
-    const [showPassword, setShowPassword] = useState(false);
-
-    const handleClick = () => {
-        setShowPassword(!showPassword);
-    };
 
     const handleChange = (e) => {
         setFormData({
@@ -55,22 +48,16 @@ const SignIn = () => {
                     id="email"
                     placeholder="E-mail"
                     value={formData.email || ''}
-                    onChange={handleClick}
+                    onChange={handleChange}
                 />
-                <div className="relative">
-                    <input
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder="Password"
-                        className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 w-full"
-                    />
-                    <button
-                        type="button"
-                        onClick={handleClick}
-                        className="absolute right-3 top-3 text-gray-400"
-                    >
-                        {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
-                    </button>
-                </div>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400"
+                    id="password"
+                    value={formData.password || ''}
+                    onChange={handleChange}
+                />
                 <button
                     type="button"
                     onClick={handleSubmit}
@@ -104,4 +91,4 @@ const SignIn = () => {
     );
 };
 
-export default SignIn;
+export default FogotPassword;

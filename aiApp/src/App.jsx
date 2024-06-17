@@ -7,9 +7,12 @@ import ContactUs from "./pages/ContactUs";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import AIhelper from "./pages/AIhelper";
+import Reseting from "./pages/Reseting";
+import ResetingLayer from "./pages/ResetingLayer";
+import Activating from "./pages/ActivatePage";
 
 export default function App(){
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return <BrowserRouter>
   <Routes>
@@ -20,6 +23,10 @@ export default function App(){
     <Route path = "/contact-us" element ={<ContactUs />}/>
     <Route path = "/sign-in" element ={<Signin />}/>
     <Route path = "/sign-up" element ={<Signup />}/>
+
+    <Route path = "/forgot-password/" element ={<Reseting />}/>
+    <Route path = "/forgot-password/:token" element ={<ResetingLayer />}/>
+    <Route path = "/activate/:token" element ={<Activating />}/>
     
     <Route path = "/helper" element ={<AIhelper />}/>
     <Route path = "/aimage-generator" element ={<ComingSoon />}/>
