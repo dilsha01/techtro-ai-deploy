@@ -18,10 +18,6 @@ export const navLinks = [
    id : "contact-us",
     title: "Contact Us",
   },
-  {
-    id: "sign-in",
-    title: "Sign in",
-  },
  
 ];
 
@@ -165,6 +161,10 @@ export const footerLinks = [
       {
         name: "Part time",
         link: "part-time",
+      },
+      {
+        name: "Contact Owner",
+        link: "https://www.google.com",
       },
     ],
   },

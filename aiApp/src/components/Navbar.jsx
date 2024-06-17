@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { close, menu ,robot} from "../assets";
+import { close, menu ,robot ,people01} from "../assets";
 import { navLinks } from "../constants";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [active, setActive] = useState("Home");
@@ -8,6 +9,8 @@ const Navbar = () => {
 
   return (
     <nav className="w-full flex items-center justify-between navbar mt-2"> {/* Removed py-3 and py-6, adjusted flex properties */}
+      
+      {/* Desktop Logo Section */}
       <div>
     <p className="mt-2 font-poppins font-semibold text-3xl text-white flex items-center">
       <img src={robot} alt="logo" className="w-[32px] h-[32px] mr-2" />
@@ -15,20 +18,36 @@ const Navbar = () => {
     </p>
   </div>
 
+      {/* Mobile Menu Section */}
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {navLinks.map((nav, index) => (
           <li
             key={nav.id}
             className={`font-poppins font-normal cursor-pointer text-[16px] ${
               active === nav.title ? "text-white" : "text-dimWhite"
-            } ${index === navLinks.length - 1 ? "mr-0" : "mr-10"}`}
+            } ${index === navLinks.length - 1 ? "mr-10" : "mr-10"}`}
             onClick={() => setActive(nav.title)}
           >
             <a href={`${nav.id}`}>{nav.title}</a>
           </li>
         ))}
+
+         <li 
+            className={`justify-end items-center font-poppins font-normal cursor-pointer text-[16px]  
+             ${active === "Sign In" ? "text-white" : "text-dimWhite"} mr-10`}  
+            onClick={() => setActive("Sign In")}>
+            <Link to="/sign-in">Sign In</Link>
+         </li>
+         
+        {/*<li className="justify-end items-center">
+          <Link to="/profile">
+            <img src={people01} alt="profile" className="w-[32px] h-[32px] mr-2 ml-4 rounded-full cursor-pointer" />
+          </Link>
+        </li>*/}
       </ul>
 
+
+      {/* Mobile Menu Button Section */}
       <div className="sm:hidden flex justify-end items-center">
         <img
           src={toggle ? close : menu}
@@ -37,6 +56,7 @@ const Navbar = () => {
           onClick={() => setToggle(!toggle)}
         />
 
+        {/* Mobile Menu Dropdown Section */}
         <div
           className={`${
             !toggle ? "hidden" : "flex"
@@ -54,9 +74,12 @@ const Navbar = () => {
                 <a href={`${nav.id}`}>{nav.title}</a>
               </li>
             ))}
+            
           </ul>
         </div>
       </div>
+
+      
     </nav>
   );
 };

@@ -1,4 +1,4 @@
-import {BrowserRouter,Route,Routes} from "react-router-dom";
+import {BrowserRouter,Route,Routes,Navigates} from "react-router-dom";
 import Home from "./pages/home";
 import Products from "./pages/products";
 import ComingSoon from "./pages/ComingSoon";
@@ -10,6 +10,7 @@ import AIhelper from "./pages/AIhelper";
 import Reseting from "./pages/Reseting";
 import ResetingLayer from "./pages/ResetingLayer";
 import Activating from "./pages/ActivatePage";
+
 
 export default function App(){
   const isLoggedIn = true;
