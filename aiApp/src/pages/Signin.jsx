@@ -1,5 +1,5 @@
 import styles from "../style";
-import {  Footer, Navbar, SignIn } from "../components";
+import {  SignIn, Footer, Navbar   } from "../components";
 const Signin = () => (
     <div className="bg-primary w-full overflow-hidden">
       <div className={`${styles.paddingX} ${styles.flexCenter}`}>

@@ -9,6 +9,8 @@ import Signin from "./pages/Signin";
 import AIhelper from "./pages/AIhelper";
 
 export default function App(){
+  const isLoggedIn = false;
+
   return <BrowserRouter>
   <Routes>
     <Route path = "/" element ={<Home />}/>
@@ -23,7 +25,8 @@ export default function App(){
     <Route path = "/aimage-generator" element ={<ComingSoon />}/>
     <Route path = "/financial-assistant" element ={<ComingSoon />}/>
     
-    <Route path = "/content" element ={<ComingSoon />}/>
+    <Route path = "/content" element ={isLoggedIn ? <Home /> :<ComingSoon />}/>
+
     <Route path = "/create" element ={<ComingSoon />}/>
     <Route path = "/explore" element ={<ComingSoon />}/>
     <Route path = "/terms-and-services" element ={<ComingSoon />}/>
