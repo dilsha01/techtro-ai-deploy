@@ -168,8 +168,69 @@ const userController = {
       console.error("Forgot password error:", err);
       res.status(500).json({ message: err.message });
     }
-  }
+  },
   
+  reset: async (req, res) => {
+    try {
+      // Get password from request body
+      const  {password}  = req.body;
+
+      // Validate password
+      if (!password) {
+        return res.status(400).json({ msg: "Password is required" });
+      }
+  
+      // Hash the password using bcrypt
+      const hashedPassword = await bcrypt.hash(password, 10); // Use salt rounds like 10
+  
+      // Update the user's password in the database
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: req.user.id }, // Find user by ID from decoded token
+        { password: hashedPassword }, // Update password field
+        { new: true } // Return updated document
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ msg: "User not found" });
+      }
+  
+      // Password reset successful response
+      res.status(200).json({ msg: "Password reset successfully." });
+    } catch (err) {
+      // Handle errors
+      console.error("Password reset error:", err);
+      res.status(500).json({ message: err.message });
+    }
+  },
+  
+  info: async (req, res) => {
+    try {
+      // get info -password
+      const user = await User.findById(req.user.id).select("-password");
+      // return user
+      res.status(200).json({ user });
+    } catch (err) {
+      res.status(500).json({ msg: err.message });
+    }
+  },
+  update: async (req, res) => {
+    try {
+      // get info
+      const { name, avatar } = req.body;
+
+      // update
+      await User.findOneAndUpdate({ _id: req.user.id }, { name, avatar });
+      // success
+      res.status(200).json({ msg: "Update success." });
+    } catch (err) {
+      res.status(500).json({ msg: err.message });
+    }
+  },
 };
+
+
+
+
+
 
 export default userController;
