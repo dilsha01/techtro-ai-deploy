@@ -124,7 +124,7 @@ const sendEmailRegister = (to, username, url) => {
   });
 };
 
-const sendEmailReset = (to, name, url) => {
+const sendEmailReset = (to, username, url) => {
   oauth2client.setCredentials({
     refresh_token: G_REFRESH_TOKEN,
   });
@@ -206,7 +206,7 @@ const sendEmailReset = (to, name, url) => {
   <div class="container">
     <div class="wrapper">
       <div class="card">
-        <h1><span>Hey</span> ${name}</h1>
+        <h1><span>Hey</span> ${username}</h1>
         <p style="color: #000;">Please click the button below to reset your password. 🙂</p>
         <a href="${url}">
           <button>${text}</button>

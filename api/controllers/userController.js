@@ -141,68 +141,54 @@ const userController = {
   },
   forgot: async (req, res) => {
     try {
-      // Get email from request body
+      // get email
       const { email } = req.body;
-  
-      // Ensure email is provided
-      if (!email) return res.status(400).json({ msg: "Email is required" });
-  
-      // Check if user with given email exists
+
+      // check email
       const user = await User.findOne({ email });
-      if (!user) return res.status(400).json({ msg: "This email is not registered" });
-  
-      // Create access token for password reset
-      const ac_token = createToken.access({ id: user._id });
-  
-      // Construct the password reset URL
-      const url = `http://localhost:3000/reset-password/${ac_token}`;
-      const name = user.username;
-  
-      // Send password reset email
-      await sendEmailReset(email, name, url);
-  
-      // Respond with success message
-      res.status(200).json({ msg: "Password reset email sent, please check your inbox" });
-  
+      if (!user)
+        return res
+          .status(400)
+          .json({ msg: "This email is not registered in our system." });
+
+      // create ac token
+      const ac_token = createToken.access({ id: user.id });
+
+      // send email
+      const url = `http://localhost:3000/auth/reset-password/${ac_token}`;
+      const username = user.username;
+      await sendEmailReset(email, username, url);
+
+      // success
+      res
+        .status(200)
+        .json({ msg: "Re-send the password, please check your email." });
     } catch (err) {
-      console.error("Forgot password error:", err);
-      res.status(500).json({ message: err.message });
+      res.status(500).json({ msg: err.message });
     }
   },
-  
   reset: async (req, res) => {
     try {
-      // Get password from request body
-      const  {password}  = req.body;
+      // get password
+      const { password } = req.body;
 
-      // Validate password
-      if (!password) {
-        return res.status(400).json({ msg: "Password is required" });
-      }
-  
-      // Hash the password using bcrypt
-      const hashedPassword = await bcrypt.hash(password, 10); // Use salt rounds like 10
-  
-      // Update the user's password in the database
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: req.user.id }, // Find user by ID from decoded token
-        { password: hashedPassword }, // Update password field
-        { new: true } // Return updated document
+      // hash password
+      const salt = await bcrypt.genSalt();
+      const hashPassword = await bcrypt.hash(password, salt);
+
+      // update password
+      await User.findOneAndUpdate(
+        { _id: req.user.id },
+        { password: hashPassword }
       );
-  
-      if (!updatedUser) {
-        return res.status(404).json({ msg: "User not found" });
-      }
-  
-      // Password reset successful response
-      res.status(200).json({ msg: "Password reset successfully." });
+
+      // reset success
+      res.status(200).json({ msg: "Password was updated successfully." });
     } catch (err) {
-      // Handle errors
-      console.error("Password reset error:", err);
-      res.status(500).json({ message: err.message });
+      res.status(500).json({ msg: err.message });
     }
   },
-  
+
   info: async (req, res) => {
     try {
       // get info -password
