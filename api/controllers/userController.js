@@ -1,16 +1,17 @@
-import sendMail from "../helpers/sendMail.js";
+import sendEmailRegister from "../helpers/sendMail.js";
 import validateEmail from "../helpers/validateEmail.js";
 import createToken from "../helpers/createToken.js";
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
+
 const userController = {
     register: async (req, res) => {
         try {
             // Get info
-            const { name, email, password } = req.body;
+            const { username, email, password } = req.body;
 
             // Check fields
-            if (!name || !email || !password) {
+            if (!username || !email || !password) {
                 return res.status(400).json({ message: "All fields are required" });
             }
 
@@ -20,8 +21,13 @@ const userController = {
             }
 
             // Check if user already exists
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ username });
             if (user) {
+                return res.status(400).json({ message: "User already exists" });
+            }
+
+            const mail = await User.findOne({ email });
+            if (mail) {
                 return res.status(400).json({ message: "User already exists" });
             }
 
@@ -36,22 +42,23 @@ const userController = {
 
             // Create new user object
             const newUser = {
-                name,
+                username,
                 email,
                 password: hashedPassword
             };
 
             // Create token
-            const activation_token = createToken.activation(newUser); // Assuming createToken function works correctly
+            const activation_token = createToken.activation(newUser);
 
             // Send email 
-            const url = `http://localhost:3000/activate/${activation_token}`;
-            sendMail.sendEmailRegister(email, name, url);
+            //const url = `http://localhost:3000/activate/${activation_token}`;
+            //await sendEmailRegister(email, name, url); // Correct usage with email, name, and url
 
             // Registration successful
             res.status(200).json({ message: "Welcome, please check your email to activate your account" });
             
         } catch (err) {
+            console.error("Registration error:", err);
             res.status(500).json({ message: err.message });
         }
     }

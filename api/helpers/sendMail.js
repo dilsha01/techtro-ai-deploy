@@ -2,34 +2,39 @@ import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 dotenv.config();
 
+const sendEmailRegister = async (email, username, url) => {
+    try {
+        const transporter = nodemailer.createTransport({
+            host: process.env.HOST,
+            port: Number(process.env.EMAIL_PORT),
+            secure: Boolean(process.env.SECURE),
+            logger : true,
+            debug: true,
+            secureConnection: false,
+            auth: {
+                user: process.env.USER,
+                pass: process.env.PASS,
+            },
+            tls: {
+                rejectUnauthorized: false,
+            },
+        });
 
-const sendEmailRegister = async (email, subject, text) => {    
-        try {
-            const transporter = nodemailer.createTransport({
-                host: process.env.HOST,
-                service: process.env.SERVICE,
-                port: Number(process.env.EMAIL_PORT),
-                secure: Boolean(process.env.SECURE),
-                auth: {
-                    user: process.env.USER,
-                    pass: process.env.PASS,
-                },
-            });
-    
-            await transporter.sendMail({
-                from: process.env.USER,
-                to: email,
-                subject: subject,
-                text: text,
-            });
-            console.log("email sent successfully");
-        } catch (error) {
-            console.log("email not sent!");
-            console.log(error);
-            return error;
-        }
-    };
+        
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Activate your account',
+            html: `<h2>Hello ${username}</h2>
+                <p>Please click on the following link to activate your account:</p>
+                <a href="${url}">${url}</a>`,
+        });
 
+        console.log("Email sent successfully");
+    } catch (error) {
+        console.error("Error sending email:", error);
+        throw error; // Ensure the error is propagated correctly
+    }
+};
 
-
-export default sendEmailRegister ;
+export default sendEmailRegister;

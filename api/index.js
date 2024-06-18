@@ -19,8 +19,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const PORT = 3000;
-app.listen(PORT, () => {
-    console.log("Server is running on port 3000");
+const usePort = process.env.PORT || PORT;
+app.listen(usePort, () => {
+    console.log(`Server is running on port ${usePort}`);
 });
 
 // Middleware

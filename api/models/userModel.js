@@ -22,6 +22,12 @@ const userSchema = new Schema({
         default: ""
         
     },
+    anykey : {
+        type: String,
+        default: ""
+        
+    },
+     
     },{  timestamps : true}
 );
 

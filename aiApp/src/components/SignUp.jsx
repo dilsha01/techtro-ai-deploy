@@ -15,6 +15,7 @@ const SignUp = () => {
     const handleClick = () => {
         setShowPassword(!showPassword);
     };
+    
 
     const handleChange = (e) => {
         setFormData({
@@ -59,7 +60,7 @@ const SignUp = () => {
                     type="text"
                     placeholder="User Name"
                     className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400"
-                    id="email"
+                    id="username"
                     
                 />
                 <input
@@ -90,6 +91,21 @@ const SignUp = () => {
                     <input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Confirm Password"
+                        className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 w-full"
+                    />
+                    <button
+                        type="button"
+                        onClick={handleClick}
+                        className="absolute right-3 top-3 text-gray-400"
+                    >
+                        {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
+                    </button>
+                </div>
+
+                <div className="relative">
+                    <input
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="Any Key (When you forgot your password to recover)"
                         className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 w-full"
                     />
                     <button
