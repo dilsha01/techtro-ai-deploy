@@ -4,11 +4,20 @@ dotenv.config();
 
 const createToken = {
     activation: (data) => {
-        return jwt.sign(data, process.env.ACTVATION_TOKEN, {
+        return jwt.sign(data, process.env.JWT_SECRET, {
+            expiresIn: "10h",
+        });
+    },
+    refresh: (data) => {
+        return jwt.sign(data, process.env.REFRESH_TOKEN, {
             expiresIn: "1d",
         });
     },
-    // Other token functions can be added here
+    access: (data) => {
+        return jwt.sign(data, process.env.ACCESS_TOKEN, {
+            expiresIn: "15m",
+        });
+    },
 };
 
 export default createToken;

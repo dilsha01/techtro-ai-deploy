@@ -1,5 +1,6 @@
 import userRoute from "./routes/userRoutes.js";
 import express from "express";
+import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
@@ -15,8 +16,7 @@ mongoose
     });
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
 
 const PORT = 3000;
 const usePort = process.env.PORT || PORT;
@@ -25,6 +25,9 @@ app.listen(usePort, () => {
 });
 
 // Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Routes
 app.use(userRoute);

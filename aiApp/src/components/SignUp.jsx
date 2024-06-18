@@ -102,7 +102,7 @@ const SignUp = () => {
                     </button>
                 </div>
 
-                <div className="relative">
+                {/*<div className="relative">
                     <input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Any Key (When you forgot your password to recover)"
@@ -115,7 +115,7 @@ const SignUp = () => {
                     >
                         {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
                     </button>
-                </div>
+                </div>*/}
                     
                 {/* Button */}
                 <button
