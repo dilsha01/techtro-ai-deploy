@@ -19,14 +19,12 @@ const userSchema = new Schema({
     },
     avatar : {
         type: String,
-        default: ""
+        default: "https://asset.cloudinary.com/ddleqtgrj/690bac2bdf7b70801c6da604df519d45"
         
     },
-    anykey : {
-        type: String,
-        default: ""
+   
         
-    },
+   
      
     },{  timestamps : true}
 );

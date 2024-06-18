@@ -3,51 +3,90 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from '../style';
 import { FcGoogle } from "react-icons/fc";
 import { MdVisibilityOff, MdVisibility } from 'react-icons/md';
+import { isEmpty, isEmail, isLength } from "../helper/validate";
+import axios from "axios";
+import { toast , ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+
+const initialState = {
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+};
 
 const SignUp = () => {
-    const [formData, setFormData] = useState({});
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const [data, setData] = useState(initialState);
+    const [visible, setVisible] = useState(false);
+    const { username, email, password, confirmPassword } = data;
 
-    const [showPassword, setShowPassword] = useState(false);
     const handleClick = () => {
-        setShowPassword(!showPassword);
+        setVisible(!visible);
     };
     
-
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.id]: e.target.value,
-        });
+        setData({ ...data, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (e) => {
+    const register = async (e) => {
         e.preventDefault();
-        setLoading(true);
-
-        const response = await fetch("http://localhost:8000/sign-in", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
-
-        const data = await response.json();
-        setLoading(false);
-
-        if (response.ok) {
-            navigate('/home'); // Adjust this based on your routing
-        } else {
-            setError(data.message);
+        // check fields
+        if (isEmpty(username) || isEmpty(password))
+          return toast("Please fill in all fields.", {
+            className: "toast-failed",
+            bodyClassName: "toast-failed",
+          });
+        // check email
+        if (!isEmail(email))
+          return toast("Please enter a valid email address.", {
+            className: "toast-failed",
+            bodyClassName: "toast-failed",
+          });
+        // check password
+        if (isLength(password))
+          return toast("Password must be at least 6 characters.", {
+            className: "toast-failed",
+            bodyClassName: "toast-failed",
+          });
+        // check match
+        if (password != confirmPassword)
+          return toast("Password did not match.", {
+            className: "toast-failed",
+            bodyClassName: "toast-failed",
+          });
+        try {
+          const res = await axios.post("/api/auth/sign-up", {
+            name,
+            email,
+            password,
+          });
+          toast(res.data.msg, {
+            className: "toast-success",
+            bodyClassName: "toast-success",
+          });
+        } catch (err) {
+          toast(err.response.data.msg, {
+            className: "toast-failed",
+            bodyClassName: "toast-failed",
+          });
         }
-    };
-
+        handleReset();
+      };
+    
+      const handleReset = () => {
+        Array.from(document.querySelectorAll("input")).forEach(
+          (input) => (input.value = "")
+        );
+        setData({ ...data, username: "", email: "", password: "", confirmpassword: "" });
+      };
+    
+    
+    
     {/* Return Form */}
     return (
+        <>
         
         <div className={`max-w-lg mx-auto ${styles.paddingY}`}>
 
@@ -55,67 +94,62 @@ const SignUp = () => {
             <h1 className="text-4xl text-center font-semibold my-8 text-white">Sign Up</h1>
 
             {/* Form */}
-            <form className="flex flex-col gap-6" >
+            <form className="flex flex-col gap-6" onSubmit={register} >
                 <input
                     type="text"
+                    name="username"
                     placeholder="User Name"
                     className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400"
                     id="username"
+                    handleChange={handleChange}
                     
                 />
                 <input
                     type="text"
+                    name="email"
                     placeholder="E-mail"
                     className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400"
                     id="email"
+                    handleChange={handleChange} 
                     
                 />
             
             <div className="relative">
                     <input
-                        type={showPassword ? 'text' : 'password'}
+                        name="password"
+                        type={visible ? 'text' : 'password'}
                         placeholder="Password"
                         className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 w-full"
+                        handleChange={handleChange}
                     />
                     <button
                         type="button"
                         onClick={handleClick}
+                        
                         className="absolute right-3 top-3 text-gray-400"
                     >
-                        {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
+                        {visible ? <MdVisibility /> : <MdVisibilityOff />}
                     </button>
                 </div>
 
                 {/* Confirm Password */}
                 <div className="relative">
                     <input
-                        type={showPassword ? 'text' : 'password'}
+                        name="confirmPassword"
+                        type={visible ? 'text' : 'password'}
                         placeholder="Confirm Password"
                         className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 w-full"
+                        handleChange={handleChange}
                     />
                     <button
                         type="button"
                         onClick={handleClick}
                         className="absolute right-3 top-3 text-gray-400"
                     >
-                        {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
+                        {visible ? <MdVisibility /> : <MdVisibilityOff />}
                     </button>
                 </div>
 
-                {/*<div className="relative">
-                    <input
-                        type={showPassword ? 'text' : 'password'}
-                        placeholder="Any Key (When you forgot your password to recover)"
-                        className="border border-gray-500 p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 w-full"
-                    />
-                    <button
-                        type="button"
-                        onClick={handleClick}
-                        className="absolute right-3 top-3 text-gray-400"
-                    >
-                        {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
-                    </button>
-                </div>*/}
                     
                 {/* Button */}
                 <button
@@ -127,8 +161,7 @@ const SignUp = () => {
                 </button>
 
                 <button
-                    type="button"
-                    onClick={handleSubmit}
+                    type="submit"
                     className="flex items-center justify-center bg-blue-700 text-white p-3 rounded-lg uppercase hover:bg-blue-800 transition-all duration-200 gap-2"
                 >
                     <FcGoogle />
@@ -145,6 +178,7 @@ const SignUp = () => {
             </div>
            
         </div>
+        </>
     );
 };
 

@@ -7,11 +7,13 @@ import jwt from "jsonwebtoken";
 
 
 const userController = {
+
+//Checked Correct
   register: async (req, res) => {
     try {
       // Get info
       const { username, email, password } = req.body;
-
+      console.log(req.body);
       // Check fields
       if (!username || !email || !password) {
         return res.status(400).json({ message: "All fields are required" });
@@ -45,9 +47,6 @@ const userController = {
         password: hashedPassword
       };
 
-      // Save new user to database
-      const createdUser = await User.create(newUser);
-
       // Create token
       const activation_token = createToken.activation(newUser);
 
@@ -62,17 +61,20 @@ const userController = {
       res.status(500).json({ message: err.message });
     }
   },
+  
+  //Checked Correct
   activate: async (req, res) => {
     try {
       // Get token
       const { activation_token } = req.body;
 
       //veify token
-      const user = jwt.verify(activation_token, process.env.JWT_SECRET);   
+      const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN);   
       const { username, email, password } = user;
 
       //check user
       const check = await User.findOne({ email });
+    
       if (check)
         return res
           .status(400)
@@ -89,6 +91,8 @@ const userController = {
     }
 
   },
+
+  //Checked Correct
   signing: async (req, res) => {
     try {
       // Get credentials
@@ -117,6 +121,8 @@ const userController = {
       res.status(500).json({ message: err.message });
     }
   },
+
+  //Checked Correct
   access: async (req, res) => {
     try {
       // Retrieve rf_token from cookies
@@ -139,6 +145,8 @@ const userController = {
       res.status(500).json({ message: err.message });
     }
   },
+
+  //Checked Correct
   forgot: async (req, res) => {
     try {
       // get email
@@ -167,11 +175,13 @@ const userController = {
       res.status(500).json({ msg: err.message });
     }
   },
+
+//Checked Correct
   reset: async (req, res) => {
     try {
       // get password
       const { password } = req.body;
-
+        console.log(password);
       // hash password
       const salt = await bcrypt.genSalt();
       const hashPassword = await bcrypt.hash(password, salt);
@@ -189,6 +199,7 @@ const userController = {
     }
   },
 
+  // Checked Correct
   info: async (req, res) => {
     try {
       // get info -password
@@ -202,20 +213,104 @@ const userController = {
   update: async (req, res) => {
     try {
       // get info
-      const { name, avatar } = req.body;
-
+      const { username, avatar } = req.body;
       // update
-      await User.findOneAndUpdate({ _id: req.user.id }, { name, avatar });
+      await User.findOneAndUpdate({ _id: req.user.id }, { username, avatar });
       // success
       res.status(200).json({ msg: "Update success." });
     } catch (err) {
       res.status(500).json({ msg: err.message });
     }
   },
+  
+  signout: async (req, res) => {
+    try {
+      // clear cookie
+      res.clearCookie("_apprftoken", { path: "/api/auth/access" });
+      // success
+      return res.status(200).json({ msg: "Signout success." });
+    } catch (err) {
+      res.status(500).json({ msg: err.message });
+    }
+  },
+  google: async (req, res) => {
+    try {
+      // get Token Id
+      const { tokenId } = req.body;
+
+      // verify Token Id
+      const client = new OAuth2(process.env.G_CLIENT_ID);
+      const verify = await client.verifyIdToken({
+        idToken: tokenId,
+        audience: process.env.G_CLIENT_ID,
+      });
+
+      // get data
+      const { email_verified, email, name, picture } = verify.payload;
+
+      // failed verification
+      if (!email_verified)
+        return res.status(400).json({ msg: "Email verification failed." });
+
+      // passed verification
+      const user = await User.findOne({ email });
+      // 1. If user exist / sign in
+      if (user) {
+        // refresh token
+        const rf_token = createToken.refresh({ id: user._id });
+        // store cookie
+        res.cookie("_apprftoken", rf_token, {
+          httpOnly: true,
+          path: "/api/auth/access",
+          maxAge: 24 * 60 * 60 * 1000, // 24hrs
+        });
+        res.status(200).json({ msg: "Signing with Google success." });
+      } else {
+        // new user / create user
+        const password = email + process.env.G_CLIENT_ID;
+        const salt = await bcrypt.genSalt();
+        const hashPassword = await bcrypt.hash(password, salt);
+        const newUser = new User({
+          name,
+          email,
+          password: hashPassword,
+          avatar: picture,
+        });
+        await newUser.save();
+        // sign in the user
+        // refresh token
+        const rf_token = createToken.refresh({ id: user._id });
+        // store cookie
+        res.cookie("_apprftoken", rf_token, {
+          httpOnly: true,
+          path: "/api/auth/access",
+          maxAge: 24 * 60 * 60 * 1000, // 24hrs
+        });
+        // success
+        res.status(200).json({ msg: "Signing with Google success." });
+      }
+    } catch (err) {
+      res.status(500).json({ msg: err.message });
+    }
+  },
+
+
+  hi: async (req, res) => {
+    try {
+      // get info -password
+      const user = await User.findById(req.user.id).select("-password");
+      console.log(name, avatar);
+      // return user
+      res.status(200).json({ user });
+    } catch (err) {
+      res.status(500).json({ msg: err.message });
+    }
+  },
+
+
+
+
 };
-
-
-
 
 
 

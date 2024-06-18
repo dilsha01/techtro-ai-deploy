@@ -39,6 +39,13 @@ const Navbar = () => {
             <Link to="/sign-in">Sign In</Link>
          </li>
          
+         <li 
+            className={`justify-end items-center font-poppins font-normal cursor-pointer text-[16px]  
+             ${active === "Sign In" ? "text-white" : "text-dimWhite"} mr-10`}  
+            onClick={() => setActive("Sign Out")}>
+            <Link to="/sign-out">Sign Out</Link>
+         </li>
+
         {/*<li className="justify-end items-center">
           <Link to="/profile">
             <img src={people01} alt="profile" className="w-[32px] h-[32px] mr-2 ml-4 rounded-full cursor-pointer" />
