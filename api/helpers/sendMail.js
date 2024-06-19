@@ -95,10 +95,10 @@ const sendEmailRegister = (to, username, url) => {
         <div class="container">
           <div class="wrapper">
             <div class="card">
-              <h1><span>Welcome, ${username}!</span> And thank you for registering TechTro AI Solutions!</h1>
-              <p>Please validate your email by clicking the button below 🙂</p>
+              <h1 style="color: black"><span>Welcome, ${username}!</span> And thank you for registering TechTro AI Solutions!</h1>
+              <p style="color: black">Please validate your email by clicking the button below 🙂</p>
               <a href=${url}><button>Activate Your Account</button></a>
-              <p class="spacing">
+              <p class="spacing" style="color: black">
                 If the button above does not work, please navigate to the link provided below 👇🏻
               </p>
               <div>${url}</div>

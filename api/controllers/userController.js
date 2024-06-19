@@ -13,7 +13,7 @@ const userController = {
     try {
       // Get info
       const { username, email, password } = req.body;
-      console.log(req.body);
+      
       // Check fields
       if (!username || !email || !password) {
         return res.status(400).json({ message: "All fields are required" });
@@ -51,7 +51,7 @@ const userController = {
       const activation_token = createToken.activation(newUser);
 
       // Send email 
-      const url = `http://localhost:3000/activate/${activation_token}`;
+      const url = `http://localhost:5173/activate/${activation_token}`;
       await sendEmailRegister(email, username, url);
 
       // Registration successful
@@ -67,14 +67,16 @@ const userController = {
     try {
       // Get token
       const { activation_token } = req.body;
-
+      console.log(activation_token);
       //veify token
-      const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN);   
+      const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN); 
+      console.log(user);  
+      
       const { username, email, password } = user;
-
+       
       //check user
       const check = await User.findOne({ email });
-    
+      console.log(check);
       if (check)
         return res
           .status(400)
@@ -181,7 +183,6 @@ const userController = {
     try {
       // get password
       const { password } = req.body;
-        console.log(password);
       // hash password
       const salt = await bcrypt.genSalt();
       const hashPassword = await bcrypt.hash(password, salt);
