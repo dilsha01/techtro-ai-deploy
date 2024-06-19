@@ -3,6 +3,8 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import path from "path"; // Add this line to import the path module
+import { fileURLToPath } from 'url'; // Add this to handle __dirname in ES modules
 
 
 dotenv.config();
