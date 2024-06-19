@@ -20,7 +20,7 @@ mongoose
 
 const app = express();
 
-const __dirname = process.resolve();
+const __dirname = path.resolve();
 
 const PORT = 3000;
 const usePort = process.env.PORT || PORT;
