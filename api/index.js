@@ -3,7 +3,10 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+
+
 dotenv.config();
+
 
 // Database Connection
 mongoose
@@ -17,6 +20,7 @@ mongoose
 
 const app = express();
 
+const __dirname = process.resolve();
 
 const PORT = 3000;
 const usePort = process.env.PORT || PORT;
@@ -32,4 +36,8 @@ app.use(cookieParser());
 // Routes
 app.use(userRoute);
 
+app.use(express.static(path.join(__dirname + "/aiApp/dist")));
 
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname , "aiApp","dist","index.html"));
+})
