@@ -58,7 +58,10 @@ const SignUp = () => {
       });
       
     try {
-
+        toast("Wait email is sending.", {
+          className: "toast-success",
+          bodyClassName: "toast-success",
+      });
       const res = await axios.post("/api/auth/sign-up", {
         username,
         email,

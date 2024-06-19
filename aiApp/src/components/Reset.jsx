@@ -30,6 +30,10 @@ const Reset = () => {
         }
 
         try {
+            toast("Wait email is sending.", {
+                className: "toast-success",
+                bodyClassName: "toast-success",
+            })
             const res = await axios.post("/api/auth/forgot-password", { email });
             toast(res.data.msg, {
                 className: "toast-success",
