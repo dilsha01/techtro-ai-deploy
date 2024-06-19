@@ -1,5 +1,5 @@
 import { useState , handleChange } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 import styles from "../style";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
@@ -17,6 +17,7 @@ const ResetLayer = () => {
   const [data, setData] = useState(initialState);
   const { password, confirmPassword } = data;
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate(); // Assign useNavigate to navigate
 
   const handleClick = () => {
     setShowPassword(!showPassword);
@@ -64,6 +65,7 @@ const ResetLayer = () => {
       });
 
       // Optionally redirect to sign-in page or handle success
+      navigate("/sign-in");
     } catch (err) {
       toast(err.response?.data?.msg || "Password reset failed.", {
         className: "toast-failed",
