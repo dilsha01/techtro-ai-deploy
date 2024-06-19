@@ -59,6 +59,7 @@ const ResetLayer = () => {
         {password},
         {headers : {Authorization: token}}
       );
+      navigate("/sign-in");
       toast("Password reset successful. You can now sign in.", {
         className: "toast-success",
         bodyClassName: "toast-success",
