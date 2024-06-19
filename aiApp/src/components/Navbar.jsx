@@ -1,11 +1,27 @@
-import { useState } from "react";
+import { useState ,useContext } from "react";
 import { close, menu ,robot ,people01} from "../assets";
 import { navLinks } from "../constants";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [active, setActive] = useState("Home");
   const [toggle, setToggle] = useState(false);
+  const { dispatch, isLoggedIn } = useContext(AuthContext); 
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.get("/api/auth/sign-out");
+      localStorage.removeItem("_appSignging");
+      dispatch({ type: "SIGNOUT" });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
 
   return (
     <nav className="w-full flex items-center justify-between navbar mt-2"> {/* Removed py-3 and py-6, adjusted flex properties */}
@@ -32,25 +48,24 @@ const Navbar = () => {
           </li>
         ))}
 
-         <li 
-            className={`justify-end items-center font-poppins font-normal cursor-pointer text-[16px]  
-             ${active === "Sign In" ? "text-white" : "text-dimWhite"} mr-10`}  
-            onClick={() => setActive("Sign In")}>
+{isLoggedIn ? (
+          <li
+            className={`justify-end items-center font-poppins font-normal cursor-pointer text-[16px] ${
+              active === "Sign Out" ? "text-white" : "text-dimWhite"} mr-10`}
+            onClick={handleClick}
+          >
+            <Link to="/">Sign Out</Link>
+          </li>
+        ) : (
+          <li
+            className={`justify-end items-center font-poppins font-normal cursor-pointer text-[16px] ${
+              active === "Sign In" ? "text-white" : "text-dimWhite"} mr-10`}
+            onClick={() => setActive("Sign In")}
+          >
             <Link to="/sign-in">Sign In</Link>
-         </li>
-         
-         <li 
-            className={`justify-end items-center font-poppins font-normal cursor-pointer text-[16px]  
-             ${active === "Sign In" ? "text-white" : "text-dimWhite"} mr-10`}  
-            onClick={() => setActive("Sign Out")}>
-            <Link to="/sign-out">Sign Out</Link>
-         </li>
+          </li>
+        )}
 
-        {/*<li className="justify-end items-center">
-          <Link to="/profile">
-            <img src={people01} alt="profile" className="w-[32px] h-[32px] mr-2 ml-4 rounded-full cursor-pointer" />
-          </Link>
-        </li>*/}
       </ul>
 
 

@@ -1,4 +1,8 @@
 import {BrowserRouter,Route,Routes,Navigate} from "react-router-dom";
+import {  AuthContext } from "./context/AuthContext";
+import { useContext, useEffect } from "react";
+import axios from "axios";
+
 import Home from "./pages/home";
 import Products from "./pages/products";
 import ComingSoon from "./pages/ComingSoon";
@@ -13,7 +17,34 @@ import Activating from "./pages/ActivatePage";
 
 
 export default function App(){
-  const isLoggedIn = true;
+
+  const {dispatch,token,isLoggedIn} = useContext(AuthContext);
+
+  useEffect(() => {
+    const _appsigning = localStorage.getItem("_appsigning");   
+    if(_appsigning){
+      const getToken = async () => {
+        const res = await axios.post("/api/auth/access", null);
+        dispatch({type:"GET_TOKEN",payload:res.data.ac_token});
+      } 
+      getToken();
+    }
+  },[dispatch ,  isLoggedIn]);
+
+  useEffect(() => {
+    if (token) {
+      const getUser = async () => {
+        dispatch({ type: "SIGNING" });
+        const res = await axios.get("/api/auth/user", {
+          headers: { Authorization: token },
+        });
+        dispatch({ type: "GET_USER", payload: res.data });
+      };
+      getUser();
+    }
+  }, [dispatch, token]);
+
+
 
   return <BrowserRouter>
   <Routes>
@@ -29,11 +60,11 @@ export default function App(){
     <Route path = "/forgot-password/:token" element ={<ResetingLayer />}/>
     <Route path = "/activate/:token" element ={<Activating />}/>
     
-    <Route path = "/helper" element ={<AIhelper />}/>
-    <Route path = "/aimage-generator" element ={<ComingSoon />}/>
-    <Route path = "/financial-assistant" element ={<ComingSoon />}/>
+    <Route path = "/helper" element ={isLoggedIn ? <AIhelper /> :<Signin />}/>
+    <Route path = "/aimage-generator" element ={isLoggedIn ? <ComingSoon /> :<Signin/>}/>
+    <Route path = "/financial-assistant" element ={isLoggedIn ? <ComingSoon /> :<Signin />}/>
     
-    <Route path = "/content" element ={isLoggedIn ? <Home /> :<ComingSoon />}/>
+    <Route path = "/content" element ={isLoggedIn ? <ComingSoon /> :<Home />}/>
 
     <Route path = "/create" element ={<ComingSoon />}/>
     <Route path = "/explore" element ={<ComingSoon />}/>

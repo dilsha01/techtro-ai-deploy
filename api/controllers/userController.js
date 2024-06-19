@@ -99,7 +99,7 @@ const userController = {
     try {
       // Get credentials
       const { email, password } = req.body;
-
+      console.log(req.body);
       // Check email
       const user = await User.findOne({ email });
       if (!user) return res.status(400).json({ msg: "This email is not registered" });
@@ -118,6 +118,8 @@ const userController = {
 
       // Send response indicating successful sign-in
       res.status(200).json({ msg: "Sign in successful" });
+      console.log("Sign in successful");
+
 
     } catch (err) {
       res.status(500).json({ message: err.message });
@@ -227,6 +229,7 @@ const userController = {
   signout: async (req, res) => {
     try {
       // clear cookie
+      console.log("Signout");
       res.clearCookie("_apprftoken", { path: "/api/auth/access" });
       // success
       return res.status(200).json({ msg: "Signout success." });
