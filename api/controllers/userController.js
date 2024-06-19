@@ -155,7 +155,7 @@ const userController = {
     try {
       // get email
       const { email } = req.body;
-
+      console.log(email);
       // check email
       const user = await User.findOne({ email });
       if (!user)
@@ -167,7 +167,7 @@ const userController = {
       const ac_token = createToken.access({ id: user.id });
 
       // send email
-      const url = `http://localhost:3000/auth/reset-password/${ac_token}`;
+      const url = `http://localhost:5173/reset-password/${ac_token}`;
       const username = user.username;
       await sendEmailReset(email, username, url);
 
@@ -185,6 +185,7 @@ const userController = {
     try {
       // get password
       const { password } = req.body;
+      console.log(password);
       // hash password
       const salt = await bcrypt.genSalt();
       const hashPassword = await bcrypt.hash(password, salt);

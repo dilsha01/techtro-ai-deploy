@@ -137,14 +137,14 @@ const SignIn = () => {
             Sign In
           </button>
 
-          {/* Sign in with Google button */}
+          {/* Sign in with Google button 
           <button
             type="button"
             className="flex items-center justify-center bg-blue-700 text-white p-3 rounded-lg uppercase hover:bg-blue-800 transition-all duration-200 gap-2"
           >
             <FcGoogle />
             Sign In with Google
-          </button>
+          </button>*/}
         </form>
 
         {/* Links for Sign Up and Forgot Password */}

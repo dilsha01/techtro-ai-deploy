@@ -16,6 +16,7 @@ import ResetingLayer from "./pages/ResetingLayer";
 import Activating from "./pages/ActivatePage";
 
 
+
 export default function App(){
 
   const {dispatch,token,isLoggedIn} = useContext(AuthContext);
@@ -57,8 +58,11 @@ export default function App(){
     <Route path = "/sign-up" element ={<Signup />}/>
 
     <Route path = "/forgot-password/" element ={<Reseting />}/>
-    <Route path = "/forgot-password/:token" element ={<ResetingLayer />}/>
+    <Route path = "/reset-password/:token" element ={<ResetingLayer />}/>
     <Route path = "/activate/:token" element ={<Activating />}/>
+
+    <Route path = "/profile" element ={<ComingSoon />}/>
+    <Route path = "/update" element ={< ComingSoon/>}/>
     
     <Route path = "/helper" element ={isLoggedIn ? <AIhelper /> :<Signin />}/>
     <Route path = "/aimage-generator" element ={isLoggedIn ? <ComingSoon /> :<Signin/>}/>
