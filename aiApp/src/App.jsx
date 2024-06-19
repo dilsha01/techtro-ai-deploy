@@ -64,7 +64,7 @@ export default function App(){
     <Route path = "/profile" element ={<ComingSoon />}/>
     <Route path = "/update" element ={< ComingSoon/>}/>
     
-    <Route path = "/helper" element ={isLoggedIn ? <AIhelper /> :<Signin />}/>
+    <Route path = "/helper" element ={isLoggedIn ? < ComingSoon/> :<Signin />}/>
     <Route path = "/aimage-generator" element ={isLoggedIn ? <ComingSoon /> :<Signin/>}/>
     <Route path = "/financial-assistant" element ={isLoggedIn ? <ComingSoon /> :<Signin />}/>
     
