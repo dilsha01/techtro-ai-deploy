@@ -51,7 +51,7 @@ const userController = {
       const activation_token = createToken.activation(newUser);
 
       // Send email 
-      const url = `http://localhost:5173/activate/${activation_token}`;
+      const url = `https://techtroai.onrender.com/activate/${activation_token}`;
       await sendEmailRegister(email, username, url);
 
       // Registration successful
@@ -167,7 +167,7 @@ const userController = {
       const ac_token = createToken.access({ id: user.id });
 
       // send email
-      const url = `http://localhost:5173/reset-password/${ac_token}`;
+      const url = `https://techtroai.onrender.com/reset-password/${ac_token}`;
       const username = user.username;
       await sendEmailReset(email, username, url);
 
