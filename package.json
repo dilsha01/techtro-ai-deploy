@@ -24,7 +24,7 @@
   "scripts": {
     "dev": "nodemon api/index.js",
     "start": "node api/index.js",
-    "build" : "npm insall && npm install --prefix aiApp && npm run build --prefix aiApp"
+    "build" : "npm install && npm install --prefix aiApp && npm run build --prefix aiApp"
   },
   "keywords": [],
   "author": "",
